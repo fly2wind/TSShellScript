@@ -55,8 +55,10 @@ chown -R mysql data
 
 # Configuration
 cp support-files/my-medium.cnf my.cnf
-sed -i "/\[mysqld\]$/a\datadir         = \/opt\/server\/database\/mysql_master\/data/" my.cnf
+sed -i "/\[mysqld\]$/a\datadir         = \/opt\/server\/database\/mysql_master\/data" my.cnf
 cp support-files/mysql.server /etc/init.d/mysql_master && chmod a+x /etc/init.d/mysql_master
+
+##chkconfig mysql_master on
 
 # Additional
 /etc/init.d/mysql_master start
