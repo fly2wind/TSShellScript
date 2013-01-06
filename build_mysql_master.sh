@@ -58,9 +58,10 @@ cp support-files/my-medium.cnf my.cnf
 sed -i "/\[mysqld\]$/a\datadir         = \/opt\/server\/database\/mysql_master\/data" my.cnf
 cp support-files/mysql.server /etc/init.d/mysql_master && chmod a+x /etc/init.d/mysql_master
 
-##chkconfig mysql_master on
-
 # Additional
+chkconfig --add mysql_master
+chkconfig mysql_master on
+
 /etc/init.d/mysql_master start
 bin/mysqladmin -u root password "TV.xian"
 bin/mysql -u root -pTV.xian -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'TV.xian' WITH GRANT OPTION; FLUSH PRIVILEGES;"
