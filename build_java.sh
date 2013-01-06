@@ -22,10 +22,10 @@ mkdir -p tmp && tar -zxvf $TARGET -C tmp
 # Create a User Group
 
 # Compile and deploy
-mkdir -p /opt/environment/java && mv tmp/* /opt/environment/java/jdk1.7
+mkdir -p /opt/environment/java && mv tmp/* /opt/environment/java/1.7.0
 
 # Postinstallation setup
-export PATH=$PATH:/opt/environment/java/1.7/bin
+export PATH=$PATH:/opt/environment/java/1.7.0/bin
 
 # Configuration
 sed -i '/export PATH$/a\export PATH=$PATH:\/opt\/environment\/java\/1.7\/bin' /etc/profile
