@@ -1,0 +1,102 @@
+#! /bin/sh
+#
+# memcached - this script starts and stops the memcached-server daemon
+#
+# chkconfig:    - 85 15 
+# description:	The memcached daemon is a network memory cache service.
+# processname:  memcached
+# config:       /opt/server/cache/memcached/conf/memcached.conf
+# pidfile:      /opt/server/cache/memcached/var/run/memcached.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+CMD=/opt/server/cache/memcached/bin/memcached
+
+CONF_FILE=/opt/server/cache/memcached/conf/memcached.conf
+LOCK_FILE=/opt/server/cache/memcached/var/lock/memcached
+
+if [ -f $CONF_FILE ];then 
+	. $CONF_FILE
+fi
+
+prog=$(basename $CMD)
+
+start () {
+	[ -x $CMD ] || exit 5
+	[ -f $CONF_FILE ] || exit 6
+	echo -n $"Starting $prog: "
+	daemon $prog -d -p $PORT -u $USER -c $MAXCONN  -m $CACHESIZE $OPTIONS
+	retval=$?
+	echo
+	[ $retval -eq 0 ] && touch $LOCK_FILE
+	return $retval
+}
+stop () {
+	echo -n $"Stopping $prog: "
+	killproc -p $prog
+	retval=$?
+	echo
+	[ $retval -eq 0 ] && rm -f $LOCK_FILE
+	
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $prog: "
+    killproc $CMD -HUP
+    retval=$?
+    echo
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    status $prog
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart|configtest)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
