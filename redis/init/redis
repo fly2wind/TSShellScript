@@ -18,14 +18,8 @@
 [ "$NETWORKING" = "no" ] && exit 0
 
 CMD=/opt/server/cache/redis/bin/redis-server
-PID=/opt/server/cache/redis/var/run/redis.pid
-
 CONF_FILE=/opt/server/cache/redis/conf/redis.conf
 LOCK_FILE=/opt/server/cache/redis/var/lock/redis
-
-if [ -f $CONF_FILE ];then 
-	. $CONF_FILE
-fi
 
 prog=$(basename $CMD)
 
@@ -33,7 +27,7 @@ start() {
     [ -x $CMD ] || exit 5
     [ -f $CONF_FILE ] || exit 6
     echo -n $"Starting $prog: "
-    daemon --pidfile $PID $CMD $CONF_FILE
+    daemon $CMD $CONF_FILE
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $LOCK_FILE
@@ -42,10 +36,10 @@ start() {
 
 stop() {
     echo -n $"Stopping $prog: "
-    killproc -p $PID $prog
+    killproc $prog -QUIT
     retval=$?
     echo
-    [ $retval -eq 0 ] && rm -f $PID $LOCK_FILE
+    [ $retval -eq 0 ] && rm -f $LOCK_FILE
     return $retval
 }
 

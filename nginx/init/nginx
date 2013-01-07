@@ -18,13 +18,8 @@
 [ "$NETWORKING" = "no" ] && exit 0
 
 CMD=/opt/server/web/nginx/sbin/nginx
-PID=/opt/server/web/nginx/var/run/nginx.pid
-
 CONF_FILE=/opt/server/web/nginx/conf/nginx.conf
 LOCK_FILE=/opt/server/web/nginx/var/lock/nginx
-
-if [ -f $CONF_FILE ];then 	
-fi
 
 prog=$(basename $CMD)
 
@@ -32,7 +27,7 @@ start() {
     [ -x $CMD ] || exit 5
     [ -f $CONF_FILE ] || exit 6
     echo -n $"Starting $prog: "
-    daemon --pidfile $PID $CMD -c $CONF_FILE
+    daemon $CMD -c $CONF_FILE
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $LOCK_FILE
@@ -41,10 +36,10 @@ start() {
 
 stop() {
     echo -n $"Stopping $prog: "
-    killproc -p $PID $prog
+    killproc $prog -QUIT
     retval=$?
     echo
-    [ $retval -eq 0 ] && rm -f $PID $LOCK_FILE
+    [ $retval -eq 0 ] && rm -f $LOCK_FILE
     return $retval
 }
 
@@ -65,7 +60,7 @@ force_reload() {
 }
 
 rh_status() {
-    status -p $PID $prog
+    status $prog
 }
 
 rh_status_q() {
