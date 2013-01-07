@@ -17,29 +17,35 @@
 # Check that networking is up.
 [ "$NETWORKING" = "no" ] && exit 0
 
-redis="/opt/server/cache/redis/bin/redis-server"
-prog=$(basename $redis)
+CMD=/opt/server/cache/redis/bin/redis-server
+PID=/opt/server/cache/redis/var/run/redis.pid
 
-REDIS_CONF_FILE="/opt/server/cache/redis/conf/redis.conf"
-REDIS_LOCK_FILE=/opt/server/cache/redis/var/lock/subsys/redis
+CONF_FILE=/opt/server/cache/redis/conf/redis.conf
+LOCK_FILE=/opt/server/cache/redis/var/lock/redis
+
+if [ -f $CONF_FILE ];then 
+	. $CONF_FILE
+fi
+
+prog=$(basename $CMD)
 
 start() {
-    [ -x $redis ] || exit 5
-    [ -f $REDIS_CONF_FILE ] || exit 6
+    [ -x $CMD ] || exit 5
+    [ -f $CONF_FILE ] || exit 6
     echo -n $"Starting $prog: "
-    daemon $redis $REDIS_CONF_FILE
+    daemon --pidfile $PID $CMD $CONF_FILE
     retval=$?
     echo
-    [ $retval -eq 0 ] && touch $REDIS_LOCK_FILE
+    [ $retval -eq 0 ] && touch $LOCK_FILE
     return $retval
 }
 
 stop() {
     echo -n $"Stopping $prog: "
-    killproc $prog -QUIT
+    killproc -p $PID $prog
     retval=$?
     echo
-    [ $retval -eq 0 ] && rm -f $REDIS_LOCK_FILE
+    [ $retval -eq 0 ] && rm -f $PID $LOCK_FILE
     return $retval
 }
 
@@ -50,8 +56,8 @@ restart() {
 
 reload() {
     echo -n $"Reloading $prog: "
-    killproc $redis -HUP
-    RETVAL=$?
+    killproc $CMD -HUP
+    retval=$?
     echo
 }
 
