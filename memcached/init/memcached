@@ -18,6 +18,7 @@
 [ "$NETWORKING" = "no" ] && exit 0
 
 CMD=/opt/server/cache/memcached/bin/memcached
+PID=/opt/server/cache/memcached/var/run/memcached.pid
 
 CONF_FILE=/opt/server/cache/memcached/conf/memcached.conf
 LOCK_FILE=/opt/server/cache/memcached/var/lock/memcached
@@ -32,7 +33,7 @@ start () {
 	[ -x $CMD ] || exit 5
 	[ -f $CONF_FILE ] || exit 6
 	echo -n $"Starting $prog: "
-	daemon $prog -d -p $PORT -u $USER -c $MAXCONN  -m $CACHESIZE $OPTIONS
+	daemon --pidfile $PID $CMD -d -p $PORT -u $USER -c $MAXCONN  -m $CACHESIZE -P $PID $OPTIONS
 	retval=$?
 	echo
 	[ $retval -eq 0 ] && touch $LOCK_FILE
@@ -40,10 +41,10 @@ start () {
 }
 stop () {
 	echo -n $"Stopping $prog: "
-	killproc -p $prog
+	killproc -p $PID $prog
 	retval=$?
 	echo
-	[ $retval -eq 0 ] && rm -f $LOCK_FILE
+	[ $retval -eq 0 ] && rm -f $PID $LOCK_FILE
 	
 }
 
