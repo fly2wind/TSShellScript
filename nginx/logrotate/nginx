@@ -1,0 +1,12 @@
+/opt/server/web/nginx/logs/*.log { 
+    rotate 30
+    compress
+    daily
+    missingok
+    notifempty
+    sharedscripts
+	create 666 nginx nginx
+    postrotate
+        /sbin/service nginx reload > /dev/null 2>/dev/null || true
+    endscript
+}

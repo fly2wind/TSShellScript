@@ -27,7 +27,7 @@ start() {
     [ -x $CMD ] || exit 5
     [ -f $CONF_FILE ] || exit 6
     echo -n $"Starting $prog: "
-    daemon $CMD $CONF_FILE
+    daemon --user redis $CMD $CONF_FILE
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $LOCK_FILE

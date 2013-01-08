@@ -31,7 +31,7 @@ start () {
 	[ -x $CMD ] || exit 5
 	[ -f $CONF_FILE ] || exit 6
 	echo -n $"Starting $prog: "
-	daemon $CMD -d -p $PORT -u $USER -c $MAXCONN  -m $CACHESIZE -P $PID $OPTIONS
+	daemon --user memcache  $CMD -d -p $PORT -c $MAXCONN  -m $CACHESIZE -P $PID $OPTIONS
 	retval=$?
 	echo
 	[ $retval -eq 0 ] && touch $LOCK_FILE
