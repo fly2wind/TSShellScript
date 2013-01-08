@@ -18,6 +18,7 @@ curl -o $TARGET $SOURCE
 mkdir -p tmp && tar -zxvf $TARGET -C tmp
 
 # Install build dependencies
+yum install -y gcc gcc-c++ make cmake autoconf automake
 yum install -y ncurses-devel openssl-devel
 
 # Create a User Group
@@ -43,5 +44,6 @@ export PATH=$PATH:/opt/environment/erlang/R15B03/bin
 # Configuration
 
 # Additional
+# export PATH USER
 sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/erlang\/R15B03\/bin' /etc/profile
 

@@ -1,17 +1,17 @@
 #!/bin/sh
 ########################################################################################
 #
-# Install JDK Script
+# Install Lua Script
 # 
 # Shawn Ma
 #
 ########################################################################################
 # Define
-TARGET=jdk-7u10-linux-x64.tar.gz
-SOURCE=http://www.ganshazi.com/jdk-7u10-linux-x64.tar.gz
+TARGET=LuaJIT-2.0.0.tar.gz
+SOURCE=http://luajit.org/download/LuaJIT-2.0.0.tar.gz
 
 # Create a build directory
-mkdir -p /opt/install/java && cd /opt/install/java
+mkdir -p /opt/install/lua && cd /opt/install/lua
 
 # Prepare for compilation source
 curl -o $TARGET $SOURCE
@@ -22,15 +22,16 @@ mkdir -p tmp && tar -zxvf $TARGET -C tmp
 # Create a User Group
 
 # Compile and deploy
-mkdir -p /opt/environment/java && mv tmp/* /opt/environment/java/1.7.0
+mv tmp/* source && cd source
+make PREFIX=/opt/environment/lua/lj2
+make install PREFIX=/opt/environment/lua/lj2
 
 # Postinstallation setup
-export PATH=$PATH:/opt/environment/java/1.7.0/bin
+export PATH=$PATH:/opt/environment/lua/lj2/bin
 
 # Configuration
 
 # Additional
-sed -i '/export PATH$/a\export PATH=$PATH:\/opt\/environment\/java\/1.7\/bin' /etc/profile
 
 
 
