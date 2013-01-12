@@ -28,20 +28,20 @@ useradd -r -g ejabberd ejabberd
 # Compile and deploy
 mv tmp/* source && cd source\src
 ./configure \
---prefix=/opt/server/xmpp/ejabberd \
+--prefix=/opt/server/broker/ejabberd \
 --enable-user=ejabberd \
 --enable-full-xml \
 --enable-nif
 make
 make install
 
-cd /opt/server/xmpp/ejabberd
+cd /opt/server/broker/ejabberd
 curl -o etc/ejabberd/ejabberd.cfg https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/ejabberd.cfg
 curl -o etc/ejabberd/ejabberdctl.cfg https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/ejabberdctl.cfg
 curl -o etc/ejabberd/inetrc https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/inetrc
 
 # Postinstallation setup
-cd /opt/server/xmpp/ejabberd
+cd /opt/server/broker/ejabberd
 chown -R ejabberd .
 chgrp -R ejabberd .
 chown -R root .
