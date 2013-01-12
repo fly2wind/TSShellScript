@@ -32,7 +32,7 @@ class EjabberdInputError(Exception):
     def __str__(self):
         return repr(self.value)
 
-logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s',filename='/Users/qma/extauth2.log',filemode='a')
+logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s',filename='/opt/server/broker/ejabberd/var/log/ejabberd/auth.log',filemode='a')
 
 logging.debug('extauth script started, waiting for ejabberd requests')
 
