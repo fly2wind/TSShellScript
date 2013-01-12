@@ -30,7 +30,7 @@ export PATH=$PATH:/opt/environment/java/1.7.0/bin
 # Configuration
 
 # Additional
-sed -i '/export PATH$/a\export PATH=$PATH:\/opt\/environment\/java\/1.7\/bin' /etc/profile
+#sed -i '/export PATH$/a\export PATH=$PATH:\/opt\/environment\/java\/1.7\/bin' /etc/profile
 
 
 
