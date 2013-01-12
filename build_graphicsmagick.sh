@@ -39,23 +39,4 @@ mv tmp/* source && cd source
 make
 make install
 
-cd /opt/server/cache/memcached
-mkdir -p conf var/run var/lock logs
-curl -o conf/memcached.conf https://raw.github.com/fly2wind/TSShellScript/master/memcached/conf/memcached.conf
-
-# Postinstallation setup
-cd /opt/server/cache/memcached
-chown -R memcache .
-chgrp -R memcache .
-chown -R root .
-chown -R memcache var logs
-
-# Configuration
-curl -o /etc/init.d/memcached https://raw.github.com/fly2wind/TSShellScript/master/memcached/init/memcached
-chmod a+x /etc/init.d/memcached
-
-# Additional
-chkconfig --add memcached
-chkconfig memcached on
-
 
