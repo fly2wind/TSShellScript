@@ -27,6 +27,9 @@ useradd -r -g ejabberd ejabberd
 
 # Compile and deploy
 mv tmp/* source && cd source/src
+
+export PATH=$PATH:/opt/environment/erlang/R15B03/bin
+
 ./configure \
 --prefix=/opt/server/broker/ejabberd \
 --enable-user=ejabberd \
