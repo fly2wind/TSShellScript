@@ -40,7 +40,11 @@ curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 export PATH=$PATH:/opt/environment/python/2.7.3/bin
 
 # Configuration
-#/opt/environment/python/2.7.3/bin/pip install MySQL-python torndb
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+yum install -y mysql-devel --enablerepo=remi
+/opt/environment/python/2.7.3/bin/pip install MySQL-python tornado torndb
 
 # Additional
 #sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/python\/2.7.3\/bin' /etc/profile
