@@ -16,7 +16,7 @@
 
 set -o errexit
 
-DIR=/opt/server/xmpp/ejabberd/sbin
+DIR=/opt/server/broker/ejabberd/sbin
 CTL="$DIR"/ejabberdctl
 USER=ejabberd
 
