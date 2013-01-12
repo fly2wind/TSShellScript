@@ -45,5 +45,5 @@ export PATH=$PATH:/opt/environment/erlang/R15B03/bin
 
 # Additional
 # export PATH USER
-sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/erlang\/R15B03\/bin' /etc/profile
+#sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/erlang\/R15B03\/bin' /etc/profile
 
