@@ -43,6 +43,9 @@ curl -o etc/ejabberd/ejabberd.cfg https://raw.github.com/fly2wind/TSShellScript/
 curl -o etc/ejabberd/ejabberdctl.cfg https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/ejabberdctl.cfg
 curl -o etc/ejabberd/inetrc https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/inetrc
 
+mkdir -p var/script
+curl -o var/script/authentication.py https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/script/authentication.py
+
 # Postinstallation setup
 cd /opt/server/broker/ejabberd
 chown -R ejabberd .
