@@ -40,9 +40,9 @@ curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 export PATH=$PATH:/opt/environment/python/2.7.3/bin
 
 # Configuration
-/opt/environment/python/2.7.3/bin/pip install MySQL-python torndb
+#/opt/environment/python/2.7.3/bin/pip install MySQL-python torndb
 
 # Additional
-sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/python\/2.7.3\/bin' /etc/profile
+#sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/python\/2.7.3\/bin' /etc/profile
 
 
