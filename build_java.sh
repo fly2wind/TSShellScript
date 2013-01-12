@@ -8,7 +8,7 @@
 ########################################################################################
 # Define
 TARGET=jdk-7u10-linux-x64.tar.gz
-SOURCE=http://www.ganshazi.com/jdk-7u10-linux-x64.tar.gz
+SOURCE=ftp://202.38.97.197/open/java/javase/7/jdk-7u10-linux-x64.tar.gz
 
 # Create a build directory
 mkdir -p /opt/install/java && cd /opt/install/java
