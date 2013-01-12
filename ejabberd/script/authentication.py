@@ -14,7 +14,7 @@
 db_name="platform"
 db_user="root"
 db_pass="TV.xian"
-db_host="localhost"
+db_host="127.0.0.1"
 db_table="mps_accounts"
 db_username_field="username"
 db_password_field="password"
