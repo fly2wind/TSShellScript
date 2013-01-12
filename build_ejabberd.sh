@@ -26,7 +26,7 @@ groupadd ejabberd
 useradd -r -g ejabberd ejabberd
 
 # Compile and deploy
-mv tmp/* source && cd source\src
+mv tmp/* source && cd source/src
 ./configure \
 --prefix=/opt/server/broker/ejabberd \
 --enable-user=ejabberd \
