@@ -15,9 +15,9 @@ db_name="platform"
 db_user="root"
 db_pass="TV.xian"
 db_host="127.0.0.1"
-db_table="mps_accounts"
-db_username_field="username"
-db_password_field="password"
+db_table="oauth_access_token"
+db_username_field="user_name"
+db_password_field="token_id"
 domain_suffix="@localhost" #JID= user+domain_suffix
 ########################################################################
 #Setup
@@ -32,7 +32,7 @@ class EjabberdInputError(Exception):
     def __str__(self):
         return repr(self.value)
 
-logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s',filename='/opt/server/broker/ejabberd/var/log/ejabberd/auth.log',filemode='a')
+logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s',filename='/opt/local/var/log/ejabberd/auth.log',filemode='a')
 
 logging.debug('extauth script started, waiting for ejabberd requests')
 
