@@ -38,10 +38,11 @@ export PATH=$PATH:/opt/environment/erlang/R15B03/bin
 make
 make install
 
-cd /opt/server/broker/ejabberd
+curl -o mod_interact.tar.gz https://nodeload.github.com/fly2wind/mod_interact/tar.gz/master
+tar -zxvf mod_interact.tar.gz && cd mod_interact-master
+./build.sh && cp ebin/*.beam /opt/server/broker/ejabberd/lib/ejabberd/ebin/
 
-mkdir -p var/run var/script
-
+cd /opt/server/broker/ejabberd && mkdir -p var/run var/script
 curl -o etc/ejabberd/ejabberd.cfg https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/ejabberd.cfg
 curl -o etc/ejabberd/ejabberdctl.cfg https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/ejabberdctl.cfg
 curl -o etc/ejabberd/inetrc https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/conf/inetrc
