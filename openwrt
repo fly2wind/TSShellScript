@@ -1,0 +1,50 @@
+#### Loopback configuration
+config 'interface' 'loopback'
+        option 'ifname' 'lo'
+        option 'proto' 'static'
+        option 'ipaddr' '127.0.0.1'
+        option 'netmask' '255.0.0.0'
+
+
+#### LAN configuration
+config 'interface' 'lan'
+        option 'ifname' 'eth0.1'
+        option 'type' 'bridge'
+        option 'proto' 'static'
+        option 'ipaddr' '192.168.1.1'
+        option 'netmask' '255.255.255.0'
+
+
+#### WAN configuration
+config 'interface' 'wan'
+        option 'ifname' 'eth0.2'
+        option 'proto' 'pppoe'
+        option 'username' '02988863067'
+        option 'password' 'a531611'
+
+#### VLAN configuration       
+config switch
+        option name     switch0
+        option reset    1
+        option enable_vlan 1
+        option enable_vlan4k 1
+
+config switch_vlan vlan_lan
+        option device   switch0
+        option vlan     1
+        option ports    "1 5t"
+
+config switch_vlan vlan_iptvm
+        option device   switch0
+        option vlan     51
+        option ports    "0t 2 3"
+
+config switch_vlan vlan_iptvu
+        option device   switch0
+        option vlan     85
+        option ports    "0t 2 3"
+
+config switch_vlan vlan_wan
+        option device   switch0
+        option vlan     81
+        option ports    "0 5t"
