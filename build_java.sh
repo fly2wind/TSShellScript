@@ -7,8 +7,8 @@
 #
 ########################################################################################
 # Define
-TARGET=jdk-7u11-linux-x64.tar.gz
-SOURCE=http://download.oracle.com/otn-pub/java/jdk/7u11-b21/jdk-7u11-linux-x64.tar.gz
+TARGET=jdk-7u13-linux-x64.tar.gz
+SOURCE=http://download.oracle.com/otn-pub/java/jdk/7u13-b20/jdk-7u13-linux-x64.tar.gz
 
 # Create a build directory
 mkdir -p /opt/install/java && cd /opt/install/java
