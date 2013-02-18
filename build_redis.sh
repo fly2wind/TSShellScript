@@ -7,8 +7,8 @@
 #
 ########################################################################################
 # Define
-TARGET=redis-2.6.7.tar.gz
-SOURCE=http://redis.googlecode.com/files/redis-2.6.7.tar.gz
+TARGET=redis-2.6.10.tar.gz
+SOURCE=http://redis.googlecode.com/files/redis-2.6.10.tar.gz
 
 # Create a build directory
 mkdir -p /opt/install/redis && cd /opt/install/redis
