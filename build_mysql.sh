@@ -8,7 +8,7 @@
 #
 ########################################################################################
 # Define
-TARGET=mysql-5.5.29.tar.gz
+TARGET=mysql-5.5.30.tar.gz
 SOURCE=http://cdn.mysql.com/Downloads/MySQL-5.5/$TARGET
 
 # Create a build directory
