@@ -48,8 +48,8 @@ export LUAJIT_INC=/opt/environment/lua/lj2/include/luajit-2.0
 --http-fastcgi-temp-path=/opt/server/web/nginx/var/tmp/nginx/fastcgi \
 --http-uwsgi-temp-path=/opt/server/web/nginx/var/tmp/nginx/uwsgi \
 --http-scgi-temp-path=/opt/server/web/nginx/var/tmp/nginx/scgi \
---add-module=../ngx_devel_kit-0.2.17 \
---add-module=../lua-nginx-module-0.7.12 \
+--add-module=../ngx_devel_kit-0.2.18 \
+--add-module=../lua-nginx-module-0.7.15 \
 --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB"
 make
 make install
