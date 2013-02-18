@@ -7,8 +7,8 @@
 #
 ########################################################################################
 # Define
-TARGET=apache-tomcat-7.0.34.tar.gz
-SOURCE=http://mirror.bjtu.edu.cn/apache/tomcat/tomcat-7/v7.0.34/bin/$TARGET
+TARGET=apache-tomcat-7.0.35.tar.gz
+SOURCE=http://mirror.bjtu.edu.cn/apache/tomcat/tomcat-7/v7.0.35/bin/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/tomcat && cd /opt/install/tomcat
