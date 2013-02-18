@@ -7,16 +7,16 @@
 #
 ########################################################################################
 # Define
-TARGET=nginx-1.2.6.tar.gz
-SOURCE=http://nginx.org/download/nginx-1.2.6.tar.gz
+TARGET=nginx-1.2.7.tar.gz
+SOURCE=http://nginx.org/download/nginx-1.2.7.tar.gz
 
 # Create a build directory
 mkdir -p /opt/install/nginx && cd /opt/install/nginx
 
 # Prepare for compilation source
 curl -o $TARGET $SOURCE
-curl -o ngx_devel_kit.tar.gz https://nodeload.github.com/simpl/ngx_devel_kit/tar.gz/v0.2.17
-curl -o lua-nginx-module.tar.gz https://nodeload.github.com/chaoslawful/lua-nginx-module/tar.gz/v0.7.12
+curl -o ngx_devel_kit.tar.gz https://nodeload.github.com/simpl/ngx_devel_kit/tar.gz/v0.2.18
+curl -o lua-nginx-module.tar.gz https://nodeload.github.com/chaoslawful/lua-nginx-module/tar.gz/v0.7.15
 
 mkdir -p tmp && tar -zxvf $TARGET -C tmp
 tar -zxvf ngx_devel_kit.tar.gz
