@@ -70,6 +70,9 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
+      <Host name="localhost"  appBase="webapps">
+        <Context path="" docBase="ROOT" />
+      </Host>
       <Host name="auth.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/auth.jxhd365.com">
         <Context path="" docBase="." />
       </Host>
