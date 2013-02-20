@@ -76,6 +76,9 @@
       <Host name="auth.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/auth.jxhd365.com">
         <Context path="" docBase="." />
       </Host>
+      <Host name="admin.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/admin.jxhd365.com">
+        <Context path="" docBase="." />
+      </Host>
       <Host name="service.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/service.jxhd365.com">
         <Context path="" docBase="." />
       </Host>
