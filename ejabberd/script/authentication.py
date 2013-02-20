@@ -16,7 +16,7 @@ db_user="root"
 db_pass="TV.xian"
 db_host="192.168.1.6"
 db_table="oauth_access_token"
-db_username_field="user_name"
+db_username_field="user_id"
 db_password_field="token_id"
 domain_suffix="@localhost" #JID= user+domain_suffix
 ########################################################################
