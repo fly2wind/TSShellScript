@@ -70,16 +70,11 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-      <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
-
-        <!-- SingleSignOn valve, share authentication between web applications Documentation at: /docs/config/valve.html -->
-        <!--
-        <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
-        -->
-
-        <!-- Access log processes all example. Documentation at: /docs/config/valve.html  Note: The pattern used is equivalent to using pattern="common" -->
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" prefix="localhost_access_log." suffix=".txt" pattern="%h %l %u %t &quot;%r&quot; %s %b" />
-
+      <Host name="auth.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/auth.jxhd365.com">
+        <Context path="" docBase="." />
+      </Host>
+      <Host name="service.jxhd365.com"  appBase="/opt/wwwroot/jxhd365.com/service.jxhd365.com">
+        <Context path="" docBase="." />
       </Host>
     </Engine>
   </Service>
