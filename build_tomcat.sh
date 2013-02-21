@@ -41,7 +41,7 @@ curl -o conf/server.xml https://raw.github.com/fly2wind/TSShellScript/master/tom
 curl -o conf/tomcat-users.xml https://raw.github.com/fly2wind/TSShellScript/master/tomcat/conf/tomcat-users.xml
 curl -o conf/wrapper.conf https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/wrapper.conf
 curl -o lib/wrapper.jar https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/wrapper.jar
-curl -o lib/wrapper.so https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/libwrapper.so
+curl -o lib/libwrapper.so https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/libwrapper.so
 curl -o bin/tomcat https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/tomcat
 
 # Postinstallation setup
