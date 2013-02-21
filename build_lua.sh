@@ -18,6 +18,7 @@ curl -o $TARGET $SOURCE
 mkdir -p tmp && tar -zxvf $TARGET -C tmp
 
 # Install build dependencies
+yum install -y gcc gcc-c++ make cmake autoconf automake
 
 # Create a User Group
 
