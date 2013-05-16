@@ -8,7 +8,7 @@
 ########################################################################################
 # Define
 TARGET=v2.1.11.tar.gz
-SOURCE=https://nodeload.github.com/processone/ejabberd/tar.gz/v2.1.11
+SOURCE=https://nodeload.github.com/processone/ejabberd/tar.gz/v2.1.12
 
 # Create a build directory
 mkdir -p /opt/install/ejabberd && cd /opt/install/ejabberd
