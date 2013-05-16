@@ -7,8 +7,8 @@
 #
 ########################################################################################
 # Define
-TARGET=OTP_R15B03-1.tar.gz
-SOURCE=https://nodeload.github.com/erlang/otp/tar.gz/OTP_R15B03-1
+TARGET=OTP_R16B.tar.gz
+SOURCE=https://nodeload.github.com/erlang/otp/tar.gz/OTP_R16B
 
 # Create a build directory
 mkdir -p /opt/install/erlang && cd /opt/install/erlang
@@ -27,7 +27,7 @@ yum install -y ncurses-devel openssl-devel
 mv tmp/* source && cd source
 ./otp_build autoconf
 ./configure \
---prefix=/opt/environment/erlang/R15B03 \
+--prefix=/opt/environment/erlang/R16B \
 --enable-threads \
 --enable-smp-support \
 --enable-kernel-poll \
@@ -39,11 +39,11 @@ make
 make install
 
 # Postinstallation setup
-export PATH=$PATH:/opt/environment/erlang/R15B03/bin
+export PATH=$PATH:/opt/environment/erlang/R16B/bin
 
 # Configuration
 
 # Additional
 # export PATH USER
-#sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/erlang\/R15B03\/bin' /etc/profile
+#sed -i '/export PATH=/a\export PATH=$PATH:\/opt\/environment\/erlang\/R16B\/bin' /etc/profile
 
