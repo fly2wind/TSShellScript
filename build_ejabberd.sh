@@ -7,8 +7,8 @@
 #
 ########################################################################################
 # Define
-TARGET=v2.1.11.tar.gz
-SOURCE=https://nodeload.github.com/processone/ejabberd/tar.gz/v2.1.12
+TARGET=ejabberd-2.1.12.tgz
+SOURCE=http://www.process-one.net/downloads/ejabberd/2.1.12/ejabberd-2.1.12.tgz
 
 # Create a build directory
 mkdir -p /opt/install/ejabberd && cd /opt/install/ejabberd
@@ -28,7 +28,7 @@ useradd -r -g ejabberd ejabberd
 # Compile and deploy
 mv tmp/* source && cd source/src
 
-export PATH=$PATH:/opt/environment/erlang/R15B03/bin
+export PATH=$PATH:/opt/environment/erlang/R16B/bin
 
 ./configure \
 --prefix=/opt/server/broker/ejabberd \
@@ -56,7 +56,7 @@ chown -R root .
 chown -R ejabberd var
 
 # Configuration
-sed -i "/^ERL=.*/a\PMD=\/opt\/environment\/erlang\/R15B03\/bin\/epmd" sbin/ejabberdctl
+sed -i "/^ERL=.*/a\PMD=\/opt\/environment\/erlang\/R16B\/bin\/epmd" sbin/ejabberdctl
 sed -i -e "s/epmd -names | grep -q name || epmd -kill/\$PMD -names | grep -q name || \$PMD -kill/" sbin/ejabberdctl
 curl -o /etc/init.d/ejabberd https://raw.github.com/fly2wind/TSShellScript/master/ejabberd/init/ejabberd
 chmod a+x /etc/init.d/ejabberd
