@@ -27,7 +27,7 @@ useradd -r -g tomcat tomcat
 
 # Compile and deploy
 mkdir -p /opt/server/web && mv tmp/* /opt/server/web/tomcat && cd /opt/server/web/tomcat/bin
-tar -zxvf tomcat-native.tar.gz && cd tomcat-native-1.1.24-src/jni/native/
+tar -zxvf tomcat-native.tar.gz && cd tomcat-native-1.1.27-src/jni/native/
 ./configure \
 --with-apr=/usr/bin/apr-1-config \
 --with-java-home=/opt/environment/java/1.7.0 \
