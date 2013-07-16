@@ -15,6 +15,16 @@ SERVICE=`which service`
 CHKCONFIG=`which chkconfig`
 
 #
+# 设置升级源
+#
+echo '设置升级源'
+cd /etc/yum.repos.d/
+cp -rf /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+sed -i -e 's/mirrorlist/#mirrorlist/' CentOS-Base.repo
+sed -i -e 's/#baseurl/baseurl/' CentOS-Base.repo
+sed -i -e 's/mirror.centos.org/mirrors.sohu.com/' CentOS-Base.repo
+
+#
 # 安装工具软件sysstat, ntp, snmpd, sudo
 #
 yum install -y sysstat ntp 
@@ -88,7 +98,7 @@ echo -e "kernel.core_uses_pid = 1\n"\
 "net.ipv4.tcp_max_syn_backlog = 262144\n"\
 "net.ipv4.tcp_max_tw_buckets = 6000\n"\
 "net.ipv4.tcp_mem = 94500000 915000000 927000000\n"\
-"# net.ipv4.tcp_no_metrics_save=1\n"\
+"net.ipv4.tcp_no_metrics_save=1\n"\
 "net.ipv4.tcp_rmem = 4096 87380 16777216\n"\
 "net.ipv4.tcp_sack = 1\n"\
 "net.ipv4.tcp_syn_retries = 1\n"\
