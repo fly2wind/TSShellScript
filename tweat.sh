@@ -32,11 +32,11 @@ yum install -y sysstat ntp
 #
 # 优化硬盘
 #
-cp -rf /etc/fstab /etc/fstab.bak
+#cp -rf /etc/fstab /etc/fstab.bak
 # 关闭系统写入文件最后读取时间
-sed -i 's/ext3 defaults[[:space:]]/ext3 defaults,noatime/' /etc/fstab
+#sed -i 's/ext3 defaults[[:space:]]/ext3 defaults,noatime/' /etc/fstab
 # 关闭系统按时间间隔决定下次重启时运行fsck
-grep ext3 /etc/fstab | grep -v boot | awk '{print $1}' | xargs -i tune2fs -i0 {}
+#grep ext3 /etc/fstab | grep -v boot | awk '{print $1}' | xargs -i tune2fs -i0 {}
 
 #
 # 配置时间同步
@@ -58,14 +58,14 @@ sed -i '/SELINUX/s/\(enforcing\|permissive\)/disabled/' /etc/sysconfig/selinux
 #
 # 禁用IPV6
 #
-cp -rf /etc/modprobe.conf /etc/modprobe.conf.bak
-echo "alias net-pf-10 off" >> /etc/modprobe.conf
-echo "alias ipv6 off" >> /etc/modprobe.conf
+#cp -rf /etc/modprobe.conf /etc/modprobe.conf.bak
+#echo "alias net-pf-10 off" >> /etc/modprobe.conf
+#echo "alias ipv6 off" >> /etc/modprobe.conf
 
 #
 # 关闭不必要的服务
 #
-SERVICES="acpid atd auditd avahi-daemon bluetooth cpuspeed cups firstboot hidd ip6tables isdn mcstrans messagebus pcscd rawdevices sendmail yum-updatesd"
+SERVICES="auditd ip6tables"
 for service in $SERVICES
 do
     ${CHKCONFIG} $service off
