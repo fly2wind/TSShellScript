@@ -17,17 +17,25 @@ CHKCONFIG=`which chkconfig`
 #
 # 设置升级源
 #
-echo '设置升级源'
+echo
+echo '配置升级源'
+echo
 cd /etc/yum.repos.d/
 cp -rf /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
 sed -i -e 's/mirrorlist/#mirrorlist/' CentOS-Base.repo
 sed -i -e 's/#baseurl/baseurl/' CentOS-Base.repo
 sed -i -e 's/mirror.centos.org/mirrors.sohu.com/' CentOS-Base.repo
+echo '配置完成'
+
 
 #
 # 安装工具软件sysstat, ntp, snmpd, sudo
 #
+echo
+echo '安装工具软件'
+echo
 yum install -y sysstat ntp 
+echo '安装完成'
 
 #
 # 优化硬盘
@@ -38,22 +46,45 @@ yum install -y sysstat ntp
 # 关闭系统按时间间隔决定下次重启时运行fsck
 #grep ext3 /etc/fstab | grep -v boot | awk '{print $1}' | xargs -i tune2fs -i0 {}
 
-#
-# 配置时间同步
-#
-echo "/usr/sbin/ntpdate cn.pool.ntp.org" >> /etc/cron.weekly/ntpdate
-chmod +x /etc/cron.weekly/ntpdate
 
 #
 #修改时区
 #
+echo
+echo '配置时区'
+echo
 cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo '配置完成'
+echo '当前时区是:'
+date -R
+
+
+#
+# 配置时间同步
+#
+echo
+echo '配置时间同步'
+echo
+echo "/usr/sbin/ntpdate cn.pool.ntp.org" >> /etc/cron.weekly/ntpdate
+chmod +x /etc/cron.weekly/ntpdate
+echo '配置完成'
+ntpdate cn.pool.ntp.org
+echo '当前时间是:'
+date
+
 
 #
 # 关闭SELINUX
 #
+echo
+echo '配置SELINUX'
+echo
 cp -rf /etc/sysconfig/selinux /etc/sysconfig/selinux.bak
 sed -i '/SELINUX/s/\(enforcing\|permissive\)/disabled/' /etc/sysconfig/selinux
+echo '配置完成'
+setenforce 0
+echo '当前状态是:'
+setstatus -v
 
 #
 # 禁用IPV6
@@ -65,16 +96,23 @@ sed -i '/SELINUX/s/\(enforcing\|permissive\)/disabled/' /etc/sysconfig/selinux
 #
 # 关闭不必要的服务
 #
+echo
+echo '配置服务'
+echo
 SERVICES="auditd ip6tables"
 for service in $SERVICES
 do
     ${CHKCONFIG} $service off
     ${SERVICE} $service stop
 done
+echo '配置完成'
 
 #
 # 优化内核参数
 #
+echo
+echo '优化内核'
+echo
 mv /etc/sysctl.conf /etc/sysctl.conf.bak
 echo -e "kernel.core_uses_pid = 1\n"\
 "kernel.msgmnb = 65536\n"\
@@ -110,6 +148,7 @@ echo -e "kernel.core_uses_pid = 1\n"\
 "net.ipv4.tcp_window_scaling = 1\n"\
 "net.ipv4.tcp_wmem = 4096 16384 16777216\n" > /etc/sysctl.conf
 sysctl -p
+echo '配置完成'
 
 #
 # 增加文件描述符限制
