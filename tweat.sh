@@ -17,15 +17,15 @@ CHKCONFIG=`which chkconfig`
 #
 # 设置升级源
 #
-echo
-echo '配置升级源'
-echo
-cd /etc/yum.repos.d/
-cp -rf /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
-sed -i -e 's/mirrorlist/#mirrorlist/' CentOS-Base.repo
-sed -i -e 's/#baseurl/baseurl/' CentOS-Base.repo
-sed -i -e 's/mirror.centos.org/mirrors.sohu.com/' CentOS-Base.repo
-echo '配置完成'
+#echo
+#echo '配置升级源'
+#echo
+#cd /etc/yum.repos.d/
+#cp -rf /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+#sed -i -e 's/mirrorlist/#mirrorlist/' CentOS-Base.repo
+#sed -i -e 's/#baseurl/baseurl/' CentOS-Base.repo
+#sed -i -e 's/mirror.centos.org/mirrors.sohu.com/' CentOS-Base.repo
+#echo '配置完成'
 
 
 #
