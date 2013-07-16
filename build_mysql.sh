@@ -8,8 +8,9 @@
 #
 ########################################################################################
 # Define
+HOST=192.168.1.158
 TARGET=mysql-5.6.12.tar.gz
-SOURCE=http://cdn.mysql.com/Downloads/MySQL-5.6/$TARGET
+SOURCE=http://$HOST/deploy/mysql/dist/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/mysql && cd /opt/install/mysql
@@ -46,7 +47,7 @@ make
 make install
 
 cd /opt/server/database/mysql
-curl -o my.cnf https://raw.github.com/fly2wind/TSShellScript/master/mysql/conf/my.cnf
+curl -o my.cnf http://$HOST/deploy/mysql/conf/my.cnf
 
 
 # Postinstallation setup
@@ -58,7 +59,7 @@ chown -R root .
 chown -R mysql data
 
 # Configuration
-curl -o /etc/init.d/mysql https://raw.github.com/fly2wind/TSShellScript/master/mysql/init/mysql
+curl -o /etc/init.d/mysql http://$HOST/deploy/mysql/init/mysql
 chmod a+x /etc/init.d/mysql
 
 /etc/init.d/mysql start
