@@ -34,7 +34,7 @@ CHKCONFIG=`which chkconfig`
 echo
 echo '安装工具软件'
 echo
-yum install -y sysstat ntp 
+yum install -y sysstat 
 echo '安装完成'
 
 #
@@ -85,7 +85,7 @@ sed -i '/SELINUX/s/\(enforcing\|permissive\)/disabled/' /etc/sysconfig/selinux
 echo '配置完成'
 setenforce 0
 echo '当前状态是:'
-setstatus -v
+getenforce
 
 #
 # 禁用IPV6
