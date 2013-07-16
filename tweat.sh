@@ -65,10 +65,11 @@ date -R
 echo
 echo '配置时间同步'
 echo
-echo "/usr/sbin/ntpdate cn.pool.ntp.org" >> /etc/cron.weekly/ntpdate
-chmod +x /etc/cron.weekly/ntpdate
+yum -y install ntp
+service ntpd start
+chkconfig ntpd on
 echo '配置完成'
-ntpdate cn.pool.ntp.org
+ntpq -p
 echo '当前时间是:'
 date
 
@@ -99,7 +100,7 @@ setstatus -v
 echo
 echo '配置服务'
 echo
-SERVICES="auditd ip6tables"
+SERVICES="auditd ip6tables iptables iscsi iscsid mdmonitor restorecond saslauthd udev-post"
 for service in $SERVICES
 do
     ${CHKCONFIG} $service off
