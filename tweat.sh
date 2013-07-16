@@ -154,8 +154,17 @@ echo '配置完成'
 #
 # 增加文件描述符限制
 #
+echo
+echo '优化文件描述符限制'
+echo
 cp -rf /etc/security/limits.conf /etc/security/limits.conf.bak
 sed -i '/# End of file/i\*\t\t-\tnofile\t\t65535' /etc/security/limits.conf
+echo '配置完成'
+
+#
+# 更新系统
+#
+yum update -y
 
 
 
