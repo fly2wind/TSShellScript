@@ -7,16 +7,17 @@
 #
 ########################################################################################
 # Define
-TARGET=nginx-1.2.7.tar.gz
-SOURCE=http://nginx.org/download/nginx-1.2.7.tar.gz
+HOST=192.168.1.158
+TARGET=nginx-1.4.2.tar.gz
+SOURCE=http://$HOST/deploy/nginx/dist/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/nginx && cd /opt/install/nginx
 
 # Prepare for compilation source
 curl -o $TARGET $SOURCE
-curl -o ngx_devel_kit.tar.gz https://nodeload.github.com/simpl/ngx_devel_kit/tar.gz/v0.2.18
-curl -o lua-nginx-module.tar.gz https://nodeload.github.com/chaoslawful/lua-nginx-module/tar.gz/v0.7.15
+curl -o ngx_devel_kit.tar.gz http://$HOST/deploy/nginx/dist\ngx_devel_kit.tar.gz 
+curl -o lua-nginx-module.tar.gz http://$HOST/deploy/nginx/dist\lua-nginx-module.tar.gz
 
 mkdir -p tmp && tar -zxvf $TARGET -C tmp
 tar -zxvf ngx_devel_kit.tar.gz
@@ -49,15 +50,16 @@ export LUAJIT_INC=/opt/environment/lua/lj2/include/luajit-2.0
 --http-uwsgi-temp-path=/opt/server/web/nginx/var/tmp/nginx/uwsgi \
 --http-scgi-temp-path=/opt/server/web/nginx/var/tmp/nginx/scgi \
 --add-module=../ngx_devel_kit-0.2.18 \
---add-module=../lua-nginx-module-0.7.15 \
+--add-module=../lua-nginx-module-0.8.4 \
 --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB"
 make
 make install
 
 cd /opt/server/web/nginx
+
 mkdir -p var/tmp/nginx var/lock var/run
 
-curl -o conf/nginx.conf https://raw.github.com/fly2wind/TSShellScript/master/nginx/conf/nginx.conf
+curl -o conf/nginx.conf http://$HOST/deploy/nginx/conf/nginx.conf
 
 # Postinstallation setup
 cd /opt/server/web/nginx
@@ -67,7 +69,7 @@ chown -R root .
 chown -R nginx html var
 
 # Configuration
-curl -o /etc/init.d/nginx https://raw.github.com/fly2wind/TSShellScript/master/nginx/init/nginx
+curl -o /etc/init.d/nginx http://$HOST/deploy/nginx/init/nginx
 chmod a+x /etc/init.d/nginx
 
 # Additional
