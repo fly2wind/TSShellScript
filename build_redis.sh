@@ -7,8 +7,9 @@
 #
 ########################################################################################
 # Define
-TARGET=redis-2.6.10.tar.gz
-SOURCE=http://redis.googlecode.com/files/redis-2.6.10.tar.gz
+HOST=192.168.1.158
+TARGET=redis-2.6.14.tar.gz
+SOURCE=http://$HOST/deploy/redis/dist/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/redis && cd /opt/install/redis
@@ -31,7 +32,7 @@ make install PREFIX=/opt/server/cache/redis
 
 cd /opt/server/cache/redis
 mkdir -p conf var/run var/lock var/snapshot logs
-curl -o conf/redis.conf https://raw.github.com/fly2wind/TSShellScript/master/redis/conf/redis.conf
+curl -o conf/redis.conf http://$HOST/deploy/redis/conf/redis.conf
 
 # Postinstallation setup
 cd /opt/server/cache/redis
@@ -41,7 +42,7 @@ chown -R root .
 chown -R redis var logs
 
 # Configuration
-curl -o /etc/init.d/redis https://raw.github.com/fly2wind/TSShellScript/master/redis/init/redis
+curl -o /etc/init.d/redis http://$HOST/deploy/redis/init/redis
 chmod a+x /etc/init.d/redis
 
 # Additional
