@@ -7,8 +7,9 @@
 #
 ########################################################################################
 # Define
-TARGET=apache-tomcat-7.0.41.tar.gz
-SOURCE=http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.41/bin/$TARGET
+HOST=192.168.1.158
+TARGET=apache-tomcat-7.0.42.tar.gz
+SOURCE=http://$HOST/deploy/tomcat/dist/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/tomcat && cd /opt/install/tomcat
@@ -37,12 +38,12 @@ make
 make install
 
 cd /opt/server/web/tomcat
-curl -o conf/server.xml https://raw.github.com/fly2wind/TSShellScript/master/tomcat/conf/server.xml
-curl -o conf/tomcat-users.xml https://raw.github.com/fly2wind/TSShellScript/master/tomcat/conf/tomcat-users.xml
-curl -o conf/wrapper.conf https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/wrapper.conf
-curl -o lib/wrapper.jar https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/wrapper.jar
-curl -o lib/libwrapper.so https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/libwrapper.so
-curl -o bin/tomcat https://raw.github.com/fly2wind/TSShellScript/master/tomcat/wrapper/tomcat
+curl -o conf/server.xml http://$HOST/deploy/tomcat/conf/server.xml
+curl -o conf/tomcat-users.xml http://$HOST/deploy/tomcat/conf/tomcat-users.xml
+curl -o conf/wrapper.conf http://$HOST/deploy/tomcat/conf/wrapper.conf
+curl -o lib/wrapper.jar http://$HOST/deploy/tomcat/dist/wrapper.jar
+curl -o lib/libwrapper.so http://$HOST/deploy/tomcat/dist/libwrapper.so
+curl -o bin/tomcat http://$HOST/deploy/tomcat/dist/tomcat
 
 # Postinstallation setup
 cd /opt/server/web/tomcat
@@ -52,7 +53,7 @@ chown -R root .
 chown -R tomcat conf webapps work temp logs
 
 # Configuration
-curl -o /etc/init.d/tomcat https://raw.github.com/fly2wind/TSShellScript/master/tomcat/init/tomcat
+curl -o /etc/init.d/tomcat http://$HOST/deploy/tomcat/init/tomcat
 chmod a+x /etc/init.d/tomcat
 
 # Additional
