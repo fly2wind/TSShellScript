@@ -7,8 +7,9 @@
 #
 ########################################################################################
 # Define
-TARGET=LuaJIT-2.0.0.tar.gz
-SOURCE=http://luajit.org/download/LuaJIT-2.0.0.tar.gz
+HOST=192.168.1.158
+TARGET=LuaJIT-2.0.2.tar.gz
+SOURCE=http://$HOST/deploy/lua/dist/$TARGET
 
 # Create a build directory
 mkdir -p /opt/install/lua && cd /opt/install/lua
